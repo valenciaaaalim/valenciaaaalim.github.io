@@ -1,7 +1,3 @@
-import { Button } from "@/components/ui/button"
-import { Download } from "lucide-react"
-import Link from "next/link"
-
 export default function AboutPage() {
   const skills = {
     Design: ["Figma", "Webflow", "Wireframes", "Mockups", "User story flows", "UI/UX Principles"],
@@ -54,6 +50,14 @@ export default function AboutPage() {
     "AI for Industries Course, AI Singapore (Aug 2022)",
   ]
 
+  const hobbies = [
+    "Photography & Visual Storytelling",
+    "Exploring New Technologies",
+    "Traveling & Cultural Immersion",
+    "Reading Design & Tech Books",
+    "Sketching & Digital Art",
+  ]
+
   return (
     <div className="min-h-screen">
       <section className="container mx-auto px-4 py-20">
@@ -77,13 +81,6 @@ export default function AboutPage() {
                 interfaces and systems that solve real problems. I'm looking for full-time opportunities where I can
                 apply my cross-disciplinary skills to create meaningful products.
               </p>
-            </div>
-            <div className="mt-8">
-              <Button asChild className="gap-2 neon-focus">
-                <Link href="/resume">
-                  <Download className="w-4 h-4" /> Download Resume
-                </Link>
-              </Button>
             </div>
           </div>
 
@@ -131,7 +128,7 @@ export default function AboutPage() {
           </div>
 
           {/* Certifications */}
-          <div>
+          <div className="mb-16">
             <h2 className="text-3xl font-display font-bold mb-8">Certifications</h2>
             <div className="glass-card rounded-2xl p-6">
               <ul className="space-y-3">
@@ -139,6 +136,20 @@ export default function AboutPage() {
                   <li key={index} className="text-muted-foreground flex gap-3">
                     <span className="text-accent-1">•</span>
                     <span>{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-display font-bold mb-8">Hobbies & Interests</h2>
+            <div className="glass-card rounded-2xl p-6">
+              <ul className="space-y-3">
+                {hobbies.map((hobby, index) => (
+                  <li key={index} className="text-muted-foreground flex gap-3">
+                    <span className="text-accent-2">•</span>
+                    <span>{hobby}</span>
                   </li>
                 ))}
               </ul>
