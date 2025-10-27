@@ -64,9 +64,12 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: 8
+          run_install: false
       - name: Ensure pnpm available
         if: steps.detect-package-manager.outputs.manager == 'pnpm'
-        run: corepack enable pnpm && pnpm --version
+        run: |
+          corepack enable pnpm
+          pnpm --version
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
