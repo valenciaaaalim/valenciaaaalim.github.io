@@ -71,6 +71,7 @@ const projects = {
     ],
     links: {
       live: "https://example.com",
+      github: "https://github.com",
     },
   },
   "mobile-fitness-app": {
@@ -105,6 +106,7 @@ const projects = {
     ],
     links: {
       live: "https://example.com",
+      github: "https://github.com",
     },
   },
   "ai-content-generator": {
@@ -174,6 +176,7 @@ const projects = {
     ],
     links: {
       live: "https://example.com",
+      github: "https://github.com",
     },
   },
   "task-management-tool": {
