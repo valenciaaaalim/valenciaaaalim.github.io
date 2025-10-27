@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function AboutPage() {
   const skills = {
     Design: ["Figma", "Webflow", "Wireframes", "Mockups", "User story flows", "UI/UX Principles"],
@@ -51,11 +53,16 @@ export default function AboutPage() {
   ]
 
   const hobbies = [
-    "Photography & Visual Storytelling",
-    "Exploring New Technologies",
-    "Traveling & Cultural Immersion",
-    "Reading Design & Tech Books",
-    "Sketching & Digital Art",
+    { image: "/classic-photography-camera.png", label: "Photography" },
+    { image: "/travel-adventure.png", label: "Travel" },
+    { image: "/technology-gadgets.jpg", label: "Tech" },
+    { image: "/reading-books.jpg", label: "Reading" },
+    { image: "/digital-art-tablet.png", label: "Digital Art" },
+    { image: "/cozy-coffee-cafe.png", label: "Coffee" },
+    { image: "/music-headphones.jpg", label: "Music" },
+    { image: "/hiking-nature.png", label: "Hiking" },
+    { image: "/design-sketching.jpg", label: "Sketching" },
+    { image: "/cultural-exploration.jpg", label: "Culture" },
   ]
 
   return (
@@ -144,15 +151,28 @@ export default function AboutPage() {
 
           <div>
             <h2 className="text-3xl font-display font-bold mb-8">Hobbies & Interests</h2>
-            <div className="glass-card rounded-2xl p-6">
-              <ul className="space-y-3">
-                {hobbies.map((hobby, index) => (
-                  <li key={index} className="text-muted-foreground flex gap-3">
-                    <span className="text-accent-2">•</span>
-                    <span>{hobby}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+              {hobbies.map((hobby, index) => (
+                <div key={index} className="flip-card aspect-square">
+                  <div className="flip-card-inner">
+                    <div className="flip-card-front">
+                      <div className="relative w-full h-full rounded-lg overflow-hidden border border-border/50">
+                        <Image
+                          src={hobby.image || "/placeholder.svg"}
+                          alt={hobby.label}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="flip-card-back">
+                      <div className="w-full h-full rounded-lg overflow-hidden border border-accent-1/60 bg-gradient-to-br from-[var(--accent-magenta)]/20 to-[var(--accent-blue)]/20 backdrop-blur-sm flex items-center justify-center p-4">
+                        <span className="text-base font-semibold text-foreground text-center">{hobby.label}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Linkedin } from "lucide-react"
+import { Mail, Linkedin, Github } from "lucide-react"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -72,12 +72,47 @@ export default function ContactPage() {
                       </a>
                     </div>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <Linkedin className="w-5 h-5 text-accent-1 mt-1" />
+                    <div>
+                      <p className="font-medium">LinkedIn</p>
+                      <a
+                        href="https://linkedin.com/in/valenciaarlinhalim"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-accent-1 transition-colors"
+                      >
+                        valenciaarlinhalim
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Github className="w-5 h-5 text-accent-1 mt-1" />
+                    <div>
+                      <p className="font-medium">GitHub</p>
+                      <a
+                        href="https://github.com/valenciaaaalim"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-accent-1 transition-colors"
+                      >
+                        valenciaaaalim
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div>
                 <h3 className="font-semibold mb-4">Connect</h3>
                 <div className="flex gap-4">
+                  <a
+                    href="mailto:valenciaarlin.halim@gmail.com"
+                    className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center hover:border-accent-1 hover:bg-accent-1/10 transition-colors"
+                    aria-label="Email"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
                   <a
                     href="https://linkedin.com/in/valenciaarlinhalim"
                     target="_blank"
@@ -86,6 +121,15 @@ export default function ContactPage() {
                     aria-label="LinkedIn"
                   >
                     <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://github.com/valenciaaaalim"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center hover:border-accent-1 hover:bg-accent-1/10 transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <Github className="w-5 h-5" />
                   </a>
                 </div>
               </div>

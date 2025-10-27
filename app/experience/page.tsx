@@ -67,9 +67,8 @@ export default function ExperiencePage() {
         <div className="space-y-24">
           {professionalExperience.map((job, jobIndex) => (
             <div key={jobIndex} className="grid md:grid-cols-2 gap-8 items-start">
-              {/* Image Collage */}
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-3">
+              <div className="relative h-full">
+                <div className="grid grid-cols-2 gap-3 h-full">
                   {job.images.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
@@ -96,8 +95,8 @@ export default function ExperiencePage() {
               </div>
 
               {/* Content */}
-              <div>
-                <div className="glass-card rounded-2xl p-8 border-l-4 border-[var(--accent-blue)]">
+              <div className="h-full">
+                <div className="glass-card rounded-2xl p-8 border-l-4 border-[var(--accent-blue)] h-full">
                   <div className="mb-6">
                     <h2 className="text-3xl font-display font-bold text-[#e7e7ea] mb-2">{job.role}</h2>
                     <p className="text-xl text-[var(--accent-blue)] font-semibold mb-1">{job.org}</p>

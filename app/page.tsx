@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Mail, Linkedin } from "lucide-react"
+import { ArrowRight, Mail, Linkedin, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
@@ -102,6 +102,14 @@ export default function HomePage() {
 
             <div className="flex gap-4">
               <a
+                href="mailto:valenciaarlin.halim@gmail.com"
+                className="flex items-center gap-2 text-[#e7e7ea]/70 hover:text-[var(--accent-blue)] transition-all hover:scale-110 hover:drop-shadow-[0_0_10px_rgba(61,184,255,0.5)]"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
+                <span className="text-sm">Email</span>
+              </a>
+              <a
                 href="https://linkedin.com/in/valenciaarlinhalim"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -112,12 +120,14 @@ export default function HomePage() {
                 <span className="text-sm">LinkedIn</span>
               </a>
               <a
-                href="mailto:valenciaarlin.halim@gmail.com"
-                className="flex items-center gap-2 text-[#e7e7ea]/70 hover:text-[var(--accent-blue)] transition-all hover:scale-110 hover:drop-shadow-[0_0_10px_rgba(61,184,255,0.5)]"
-                aria-label="Email"
+                href="https://github.com/valenciaaaalim"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#e7e7ea]/70 hover:text-[var(--accent-amber)] transition-all hover:scale-110 hover:drop-shadow-[0_0_10px_rgba(255,179,0,0.5)]"
+                aria-label="GitHub"
               >
-                <Mail className="w-5 h-5" />
-                <span className="text-sm">Email</span>
+                <Github className="w-5 h-5" />
+                <span className="text-sm">GitHub</span>
               </a>
             </div>
           </div>
