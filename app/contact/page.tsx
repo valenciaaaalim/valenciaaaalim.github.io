@@ -25,7 +25,9 @@ export default function ContactPage() {
     setSubmitStatus("idle")
 
     try {
-      const response = await fetch("/api/contact", {
+      const endpoint = process.env.NEXT_PUBLIC_NETLIFY_FUNCTION_URL || "/api/contact"
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

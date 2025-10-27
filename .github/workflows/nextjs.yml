@@ -32,11 +32,13 @@ jobs:
         with:
           static_site_generator: next
       - name: Install deps
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Build
         run: pnpm build
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NETLIFY_FUNCTION_URL: ${{ secrets.NETLIFY_FUNCTION_URL }}
+          NEXT_PUBLIC_NETLIFY_FUNCTION_URL: ${{ secrets.NETLIFY_FUNCTION_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

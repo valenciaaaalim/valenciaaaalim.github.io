@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const netlifyEndpoint =
+  process.env.NETLIFY_FUNCTION_URL || process.env.NEXT_PUBLIC_NETLIFY_FUNCTION_URL || ""
 
 export async function POST(request: Request) {
   try {
@@ -19,30 +19,27 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid email format" }, { status: 400 })
     }
 
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>", // Replace with your verified domain
-      to: "valenciaarlin.halim@gmail.com",
-      replyTo: email,
-      subject: `Portfolio Contact: ${subject}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr />
-        <h3>Message:</h3>
-        <p>${message.replace(/\n/g, "<br />")}</p>
-      `,
-    })
-
-    if (error) {
-      throw(error)
-      console.error("[v0] Resend error:", error)
-      return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+    if (!netlifyEndpoint) {
+      console.error("[v0] NETLIFY_FUNCTION_URL not configured")
+      return NextResponse.json({ error: "Contact form not available" }, { status: 500 })
     }
 
-    return NextResponse.json({ success: true, data }, { status: 200 })
+    const response = await fetch(netlifyEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, subject, message }),
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      console.error("[v0] Netlify function error:", data)
+      return NextResponse.json(data, { status: response.status })
+    }
+
+    return NextResponse.json(data, { status: response.status })
   } catch (error) {
     console.error("[v0] Contact form error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
