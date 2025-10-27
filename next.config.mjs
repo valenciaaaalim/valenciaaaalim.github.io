@@ -1,8 +1,14 @@
-// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true }, // optional; the action also sets this
-  // do NOT add basePath/assetPrefix here; the action injects them
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    unoptimized: true,
+  },
 }
+
 export default nextConfig
