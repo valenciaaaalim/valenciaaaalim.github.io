@@ -58,11 +58,15 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: pnpm-lock.yaml
       - name: Install pnpm
         if: steps.detect-package-manager.outputs.manager == 'pnpm'
         uses: pnpm/action-setup@v3
         with:
           version: 8
+      - name: Ensure pnpm available
+        if: steps.detect-package-manager.outputs.manager == 'pnpm'
+        run: corepack enable pnpm && pnpm --version
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
