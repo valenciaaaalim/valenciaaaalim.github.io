@@ -20,23 +20,27 @@ export async function POST(request: Request) {
     }
 
     // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>", // Replace with your verified domain
-      to: "valenciaarlin.halim@gmail.com",
-      replyTo: email,
-      subject: `Portfolio Contact: ${subject}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr />
-        <h3>Message:</h3>
-        <p>${message.replace(/\n/g, "<br />")}</p>
-      `,
-    })
+    const sendEmail = async () =>
+      resend.emails.send({
+        from: "Portfolio Contact <onboarding@resend.dev>", // Replace with your verified domain
+        to: "valenciaarlin.halim@gmail.com",
+        replyTo: email,
+        subject: `Portfolio Contact: ${subject}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>From:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <hr />
+          <h3>Message:</h3>
+          <p>${message.replace(/\n/g, "<br />")}</p>
+        `,
+      })
+
+    const { data, error } = await sendEmail()
 
     if (error) {
+      throw(error)
       console.error("[v0] Resend error:", error)
       return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
     }
